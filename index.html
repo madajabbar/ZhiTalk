@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZhiTalk — Belajar Mandarin Jadi Seru!</title>
+  <meta name="description"
+    content="ZhiTalk adalah platform belajar Bahasa Mandarin interaktif dengan kosakata, flashcard, dan kuis.">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'zh-red': '#C0392B',
+            'zh-red-dark': '#922B21',
+            'zh-gold': '#F4D03F',
+            'zh-gold-dark': '#D4AC0D',
+            'zh-cream': '#FFFDF0',
+            'zh-bg': '#FAFAFA',
+            'zh-text': '#2C2C2C',
+            'zh-text-sec': '#7F8C8D',
+            'zh-border': '#EAEAEA',
+            'zh-success': '#27AE60',
+            'zh-error': '#E74C3C',
+            'zh-orange': '#E67E22',
+            'zh-blue': '#3498DB',
+          },
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="font-inter bg-gray-100 text-zh-text antialiased">
+
+  <!-- App Shell -->
+  <div id="app" class="app-shell relative min-h-screen bg-zh-cream">
+
+    <!-- Sidebar Navigation (desktop) -->
+    <nav id="side-nav" class="side-nav hidden">
+      <div class="side-nav-inner">
+        <div class="side-nav-brand">
+          <span class="text-3xl">🐼</span>
+          <span class="side-nav-brand-text text-xl font-black text-zh-red">ZhiTalk</span>
+        </div>
+        <div class="side-nav-links">
+          <button class="side-nav-btn nav-btn" data-route="home" id="side-nav-home">
+            <span class="material-icons-round text-xl">home</span>
+            <span class="side-nav-label">Beranda</span>
+          </button>
+          <button class="side-nav-btn nav-btn" data-route="learn" id="side-nav-learn">
+            <span class="material-icons-round text-xl">auto_stories</span>
+            <span class="side-nav-label">Belajar</span>
+          </button>
+          <button class="side-nav-btn nav-btn" data-route="progress" id="side-nav-progress">
+            <span class="material-icons-round text-xl">insights</span>
+            <span class="side-nav-label">Progres</span>
+          </button>
+          <button class="side-nav-btn nav-btn" data-route="profile" id="side-nav-profile">
+            <span class="material-icons-round text-xl">person_outline</span>
+            <span class="side-nav-label">Profil</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Container (pages rendered here) -->
+    <main id="page-container" class="page-main min-h-screen pb-20 lg:pb-0 transition-opacity duration-300">
+      <!-- Content injected by JS -->
+    </main>
+
+    <!-- Bottom Navigation Bar (mobile/tablet) -->
+    <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-zh-border z-50 hidden lg:hidden">
+      <div class="flex justify-around items-center py-2 max-w-2xl mx-auto">
+        <button class="nav-btn" data-route="home" id="nav-home">
+          <span class="material-icons-round text-2xl">home</span>
+          <span class="text-[10px] font-semibold mt-0.5">Beranda</span>
+        </button>
+        <button class="nav-btn" data-route="learn" id="nav-learn">
+          <span class="material-icons-round text-2xl">auto_stories</span>
+          <span class="text-[10px] font-semibold mt-0.5">Belajar</span>
+        </button>
+        <button class="nav-btn" data-route="progress" id="nav-progress">
+          <span class="material-icons-round text-2xl">insights</span>
+          <span class="text-[10px] font-semibold mt-0.5">Progres</span>
+        </button>
+        <button class="nav-btn" data-route="profile" id="nav-profile">
+          <span class="material-icons-round text-2xl">person_outline</span>
+          <span class="text-[10px] font-semibold mt-0.5">Profil</span>
+        </button>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
+</body>
+
+</html>
