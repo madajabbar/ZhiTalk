@@ -3,6 +3,12 @@
 
 const API_BASE = new URLSearchParams(location.search).get("api") || "https://api-ztalk.akusedang.online";
 
+const ICONS = {
+  book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+  speaker: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>'
+};
+
 /* ---------- data ---------- */
 // 20 hanzi inti HSK1 (dari silabus Moona)
 const CHAR_LIST = [
@@ -30,7 +36,7 @@ const CHAR_LIST = [
 ];
 
 const LESSONS = [
-  { id: "salam", title: "Salam & sapaan", emoji: "👋", words: [
+  { id: "salam", title: "Salam & sapaan", words: [
       { hz: "你好", py: "nǐ hǎo", mn: "Halo" },
       { hz: "再见", py: "zài jiàn", mn: "Sampai jumpa" },
       { hz: "谢谢", py: "xiè xie", mn: "Terima kasih" },
@@ -38,7 +44,7 @@ const LESSONS = [
       { hz: "请", py: "qǐng", mn: "Silakan" },
       { hz: "早上好", py: "zǎo shang hǎo", mn: "Selamat pagi" },
   ]},
-  { id: "angka", title: "Angka", emoji: "🔢", words: [
+  { id: "angka", title: "Angka", words: [
       { hz: "一", py: "yī", mn: "satu" },
       { hz: "二", py: "èr", mn: "dua" },
       { hz: "三", py: "sān", mn: "tiga" },
@@ -46,7 +52,7 @@ const LESSONS = [
       { hz: "五", py: "wǔ", mn: "lima" },
       { hz: "十", py: "shí", mn: "sepuluh" },
   ]},
-  { id: "keluarga", title: "Keluarga & orang", emoji: "👪", words: [
+  { id: "keluarga", title: "Keluarga & orang", words: [
       { hz: "我", py: "wǒ", mn: "saya" },
       { hz: "你", py: "nǐ", mn: "kamu" },
       { hz: "他", py: "tā", mn: "dia (lk)" },
@@ -56,7 +62,7 @@ const LESSONS = [
       { hz: "朋友", py: "péngyou", mn: "teman" },
       { hz: "家", py: "jiā", mn: "rumah/keluarga" },
   ]},
-  { id: "hari", title: "Hari & waktu", emoji: "📅", words: [
+  { id: "hari", title: "Hari & waktu", words: [
       { hz: "今天", py: "jīntiān", mn: "hari ini" },
       { hz: "明天", py: "míngtiān", mn: "besok" },
       { hz: "昨天", py: "zuótiān", mn: "kemarin" },
@@ -64,7 +70,7 @@ const LESSONS = [
       { hz: "晚上", py: "wǎnshang", mn: "malam" },
       { hz: "现在", py: "xiànzài", mn: "sekarang" },
   ]},
-  { id: "verba", title: "Kata kerja dasar", emoji: "🏃", words: [
+  { id: "verba", title: "Kata kerja dasar", words: [
       { hz: "是", py: "shì", mn: "adalah" },
       { hz: "有", py: "yǒu", mn: "punya" },
       { hz: "去", py: "qù", mn: "pergi" },
@@ -320,13 +326,13 @@ function renderLessons() {
     let cards = "";
     lesson.words.forEach(w => {
       cards += `<div class="vocab-card">
-        <button class="hear" data-word="${w.hz}">🔊</button>
+        <button class="hear" data-word="${w.hz}" aria-label="Dengar">${ICONS.speaker}</button>
         <div class="hz">${w.hz}</div>
         <div class="py">${w.py}</div>
         <div class="mn">${w.mn}</div>
       </div>`;
     });
-    block.innerHTML = `<h3>${lesson.emoji} ${lesson.title} <span class="lesson-chip">${lesson.words.length} kata</span></h3>
+    block.innerHTML = `<h3><span class="lesson-ic">${ICONS.book}</span> ${lesson.title} <span class="lesson-chip">${lesson.words.length} kata</span></h3>
       <div class="vocab-grid">${cards}</div>`;
     wrap.appendChild(block);
   });
@@ -344,7 +350,7 @@ function renderAssignments() {
     const card = document.createElement("div");
     card.className = "assign-card";
     card.innerHTML = `
-      <div class="assign-title">📜 ${a.title}</div>
+      <div class="assign-title"><span class="assign-ic">${ICONS.list}</span> ${a.title}</div>
       <div class="assign-meta">${a.due_note ? "Jatuh tempo: " + a.due_note : ""}</div>
       <div class="assign-chips">${chars.slice(0, 8).map(c => `<span class="chip">${c}</span>`).join("")}</div>
       <button class="btn primary">Latih & kirim</button>`;

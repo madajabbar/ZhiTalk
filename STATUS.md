@@ -45,3 +45,12 @@ HEAD repo: 230e996 (PWA frontend + backend Phase 1 MVP)
 - `scripts/trig.py` — trigger deploy gitSource (ref master) + polling READY.
 - `scripts/vc.py` — helper API: domain, redeploy, list deployments.
 - `scripts/cfdns.py` — Cloudflare DNS (CNAME list/create/delete) via token dari `~/.cloudflared/cert.pem`.
+
+## Polish pass (2026-11-20, ±19:05 WIB, Zeta w/ Moona)
+
+- Seal: `Z不` → single `学` (top bar), cocok dengan icon & hero seal. `Z不` hilang dari halaman.
+- Emoji UI → inline SVG stroke (stroke=currentColor, 1.7, 24x24): tab bar (Beranda/Latihan/Pelajaran/Tugas/Progres), heads kartu Tugas & Latihan, tombol hear vocab, judul pelajaran & tugas. Filter grayscale/opacity `.tab-ic` dihapus, warna via currentColor (ink2 inactive / accent active).
+- Ornamen 祥云 (cloud) inline SVG di hero, opacity ≤0.08 accent tone, pointer-events none, tanpa layout shift.
+- Dark mode `@media (prefers-color-scheme: dark)` — redefinisikan semua var CSS; topbar & tabbar background pindah ke `--topbar-bg`/`--tabbar-bg` agar ikut gelap. Light mode pixel-identical.
+- Cleanup assignment: DELETE `/api/assignments/2` & `/3` → 200 (Latihan 1 — Salam, Latihan via tunnel). GET `/api/assignments` = `[...id 1 'Latihan']` (bukan bagian scope ber). Attempts/progress tidak disentuh.
+- Verifikasi konten (post-deploy): seal `学`, no `Z不`, no emoji tab; `/styles.css` memuat `prefers-color-scheme`; `/app.js`, `/manifest.webmanifest`, `/sw.js`, `/icon.svg` 200; `/api/progress` 200; `/api/assignments` list sisa id 1.
