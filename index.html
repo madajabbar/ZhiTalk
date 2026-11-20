@@ -1,120 +1,126 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZhiTalk — Belajar Mandarin Jadi Seru!</title>
-  <meta name="description"
-    content="ZhiTalk adalah platform belajar Bahasa Mandarin interaktif dengan kosakata, flashcard, dan kuis.">
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'zh-red': '#C0392B',
-            'zh-red-dark': '#922B21',
-            'zh-gold': '#F4D03F',
-            'zh-gold-dark': '#D4AC0D',
-            'zh-cream': '#FFFDF0',
-            'zh-bg': '#FAFAFA',
-            'zh-text': '#2C2C2C',
-            'zh-text-sec': '#7F8C8D',
-            'zh-border': '#EAEAEA',
-            'zh-success': '#27AE60',
-            'zh-error': '#E74C3C',
-            'zh-orange': '#E67E22',
-            'zh-blue': '#3498DB',
-          },
-          fontFamily: {
-            'inter': ['Inter', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap"
-    rel="stylesheet">
-
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ZTalk — Belajar Mandarin</title>
+<meta name="description" content="ZTalk — latihan menulis hanzi dengan Hanzi Writer, pelajaran HSK1, dan tugas dari Moona.">
+<meta name="theme-color" content="#FAF9F7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<body class="font-inter bg-gray-100 text-zh-text antialiased">
-
-  <!-- App Shell -->
-  <div id="app" class="app-shell relative min-h-screen bg-zh-cream">
-
-    <!-- Sidebar Navigation (desktop) -->
-    <nav id="side-nav" class="side-nav hidden">
-      <div class="side-nav-inner">
-        <div class="side-nav-brand">
-          <span class="text-3xl">🐼</span>
-          <span class="side-nav-brand-text text-xl font-black text-zh-red">ZhiTalk</span>
-        </div>
-        <div class="side-nav-links">
-          <button class="side-nav-btn nav-btn" data-route="home" id="side-nav-home">
-            <span class="material-icons-round text-xl">home</span>
-            <span class="side-nav-label">Beranda</span>
-          </button>
-          <button class="side-nav-btn nav-btn" data-route="learn" id="side-nav-learn">
-            <span class="material-icons-round text-xl">auto_stories</span>
-            <span class="side-nav-label">Belajar</span>
-          </button>
-          <button class="side-nav-btn nav-btn" data-route="progress" id="side-nav-progress">
-            <span class="material-icons-round text-xl">insights</span>
-            <span class="side-nav-label">Progres</span>
-          </button>
-          <button class="side-nav-btn nav-btn" data-route="profile" id="side-nav-profile">
-            <span class="material-icons-round text-xl">person_outline</span>
-            <span class="side-nav-label">Profil</span>
-          </button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Page Container (pages rendered here) -->
-    <main id="page-container" class="page-main min-h-screen pb-20 lg:pb-0 transition-opacity duration-300">
-      <!-- Content injected by JS -->
-    </main>
-
-    <!-- Bottom Navigation Bar (mobile/tablet) -->
-    <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-zh-border z-50 hidden lg:hidden">
-      <div class="flex justify-around items-center py-2 max-w-2xl mx-auto">
-        <button class="nav-btn" data-route="home" id="nav-home">
-          <span class="material-icons-round text-2xl">home</span>
-          <span class="text-[10px] font-semibold mt-0.5">Beranda</span>
-        </button>
-        <button class="nav-btn" data-route="learn" id="nav-learn">
-          <span class="material-icons-round text-2xl">auto_stories</span>
-          <span class="text-[10px] font-semibold mt-0.5">Belajar</span>
-        </button>
-        <button class="nav-btn" data-route="progress" id="nav-progress">
-          <span class="material-icons-round text-2xl">insights</span>
-          <span class="text-[10px] font-semibold mt-0.5">Progres</span>
-        </button>
-        <button class="nav-btn" data-route="profile" id="nav-profile">
-          <span class="material-icons-round text-2xl">person_outline</span>
-          <span class="text-[10px] font-semibold mt-0.5">Profil</span>
-        </button>
-      </div>
-    </nav>
-
+<!-- Top bar -->
+<header id="topbar">
+  <div class="brand">
+    <span class="seal">Z不</span>
+    <span class="brandname">ZTalk</span>
   </div>
+  <div class="top-stats" id="top-streak" hidden><span class="dot"></span><b id="streak-n">0</b><span class="label">hari</span></div>
+</header>
 
-  <!-- App JS -->
-  <script src="app.js"></script>
+<main id="view">
+
+  <!-- HOME -->
+  <section class="panel" id="panel-home">
+    <div class="hero">
+      <div class="hero-seal">学</div>
+      <h1>Selamat datang,<br>Mada</h1>
+      <p class="sub">Berlatih menulis hanzi, pelan tapi pasti. Tugas dari Moona menunggu.</p>
+    </div>
+    <div class="stat-row" id="home-stats">
+      <div class="stat"><b id="hs-attempts">–</b><span>Total latihan</span></div>
+      <div class="stat"><b id="hs-mastery">–</b><span>Penguasaan</span></div>
+      <div class="stat"><b id="hs-chars">–</b><span>Hanzi dikuasai</span></div>
+    </div>
+    <div class="card" id="home-assign">
+      <div class="card-head"><span>📜</span><div><b>Tugas dari Moona</b><small id="home-assign-title">Memuat…</small></div></div>
+      <button class="btn primary" id="home-assign-btn" disabled>Buka tugas</button>
+    </div>
+    <div class="card">
+      <div class="card-head"><span>✍️</span><div><b>Lanjutkan berlatih</b><small id="home-next-char">–</small></div></div>
+      <button class="btn primary" id="home-practice-btn">Tulis sekarang</button>
+    </div>
+  </section>
+
+  <!-- PRACTICE: char picker -->
+  <section class="panel" id="panel-practice">
+    <h2 class="panel-title">Latihan menulis</h2>
+    <p class="sub">Pilih hanzi. Ketuk kartu untuk melihat cara menulisnya, atau langsung uji dirimu.</p>
+    <div class="char-grid" id="char-grid"></div>
+  </section>
+
+  <!-- WRITE screen (sub-panel) -->
+  <section class="panel" id="panel-write">
+    <div class="write-head">
+      <button class="icon-btn" id="write-back" aria-label="Kembali">←</button>
+      <div class="write-char-wrap">
+        <span class="write-char" id="write-char">好</span>
+        <span class="write-py" id="write-py">hǎo</span>
+      </div>
+      <span class="spacer"></span>
+    </div>
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="practice">Latih</button>
+      <button class="mode-tab" data-mode="animate">Lihat animasi</button>
+      <button class="mode-tab" data-mode="quiz">Kuis</button>
+    </div>
+    <div id="writer-wrap" class="writer-wrap"><div id="writer"></div></div>
+    <div class="write-status" id="write-status">Pilih mode untuk mulai.</div>
+    <div class="write-actions">
+      <button class="btn ghost" id="write-clear">Bersihkan</button>
+      <button class="btn primary" id="write-save">Simpan latihan</button>
+    </div>
+  </section>
+
+  <!-- LESSONS -->
+  <section class="panel" id="panel-lessons">
+    <h2 class="panel-title">Pelajaran</h2>
+    <p class="sub">HSK 1. Ketuk kartu untuk mendengar, atau panah untuk berlatih menulis.</p>
+    <div id="lesson-list"></div>
+  </section>
+
+  <!-- ASSIGNMENTS -->
+  <section class="panel" id="panel-assign">
+    <h2 class="panel-title">Tugas</h2>
+    <p class="sub">Dikirim oleh Moona. Latih karakter tugas lalu kirim hasilnya.</p>
+    <div id="assign-list"></div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section class="panel" id="panel-progress">
+    <h2 class="panel-title">Progres</h2>
+    <div class="stat-row big" id="progress-stats">
+      <div class="stat"><b id="ps-attempts">–</b><span>Total latihan</span></div>
+      <div class="stat"><b id="ps-mastery">–</b><span>Penguasaan</span></div>
+      <div class="stat"><b id="ps-streak">–</b><span>Streak harian</span></div>
+    </div>
+    <h3>Penguasaan per hanzi</h3>
+    <div id="progress-chars"></div>
+  </section>
+
+</main>
+
+<!-- Bottom tab bar -->
+<nav class="tabbar">
+  <button class="tab" data-panel="home"><span class="tab-ic">🏠</span><span>Beranda</span></button>
+  <button class="tab" data-panel="practice"><span class="tab-ic">✍️</span><span>Latihan</span></button>
+  <button class="tab" data-panel="lessons"><span class="tab-ic">📚</span><span>Pelajaran</span></button>
+  <button class="tab" data-panel="assign"><span class="tab-ic">📜</span><span>Tugas</span></button>
+  <button class="tab" data-panel="progress"><span class="tab-ic">📈</span><span>Progres</span></button>
+</nav>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.6.0/dist/hanzi-writer.min.js"></script>
+<script src="app.js"></script>
 </body>
-
 </html>

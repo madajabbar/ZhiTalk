@@ -1,0 +1,13 @@
+{
+  "name": "ZTalk — Belajar Mandarin",
+  "short_name": "ZTalk",
+  "description": "Latihan menulis hanzi, pelajaran HSK1, dan tugas dari Moona.",
+  "start_url": "/?home",
+  "display": "standalone",
+  "background_color": "#FAF9F7",
+  "theme_color": "#FAF9F7",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

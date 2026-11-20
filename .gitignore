@@ -1,0 +1,6 @@
+backend/data/
+backend/.env
+.env.local
+.DS_Store
+node_modules/
+qa-screenshots/
