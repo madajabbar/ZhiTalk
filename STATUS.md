@@ -1,0 +1,47 @@
+# ZTalk — Status Deploy (Frontend Vercel)
+
+Tanggal: 2026-11-20
+Oleh: Zeta (brief Moona, 20 Nov 18:52 WIB)
+HEAD repo: 230e996 (PWA frontend + backend Phase 1 MVP)
+
+## Vercel
+
+- Project: `zhi-talk`
+- ID: `prj_n2bgZcLa6EVFSIrDKyw9w3CC4DYx`
+- Team: `team_wYvRGvgtrsM47fZa4eU4sm1M`
+- Framework: none (static). No build command. Root = repo root. Output = root.
+- Deployment URL: `https://zhi-talk-mkbngf4z1-madajabbar22-gmailcoms-projects.vercel.app` (production, gitSha 230e996)
+- Enable: `https://zhi-talk.vercel.app`
+
+## Domain & DNS
+
+- Domain terpasang di Vercel: `ztalk.akusedang.online` (verified, 2026-11-20 11:54 WIB)
+- Cloudflare CNAME: `ztalk` -> `cname.vercel-dns.com`, monitoring OFF (DNS record id `45472c13fc3abc65e1093f7ba4555a3c`, dibuat 2026-11-20 18:58 WIB). Tidak ada record ztalk lama yang bertabrakan.
+- Backend URL: `https://api-ztalk.akusedang.online` (tunnel systemd ztalk-tunnel, 127.0.0.1:3012) — TIDAK disentuh.
+
+## Verifikasi (2026-11-20, ±19:05 WIB)
+
+| Target | Hasil |
+|---|---|
+| `https://ztalk.akusedang.online/` | 200, `<title>ZTalk — Belajar Mandarin</title>` |
+| `/app.js` | 200 |
+| `/styles.css` | 200 |
+| `/manifest.webmanifest` | 200 (JSON valid, name=ZTalk — Belajar Mandarin) |
+| `/sw.js` | 200 |
+| `/icon.svg` | 200 |
+| API base di app.js | `https://api-ztalk.akusedang.online` |
+| `https://api-ztalk.akusedang.online/api/progress` | 200, `{"totalAttempts":2,"masteryPct":100.0,...}` |
+
+## Catatan
+
+- Deploy via Vercel REST API (token `~/.config/undangin/vercel.token`, chmod 600, tidak dicetak), file blobs langsung untuk file statis. Deploy kedua (gitSource github ref master) agar alias `ztalk.akusedang.online` terpasang.
+- Auto-deploy git tidak dipakai karena khawatir verifikasi email author (lihat undangin DEPLOY.md); trigger via API.
+- Deployment protection (SSO) ON untuk `vercel.app` (`all_except_custom_domains`), jadi URL vercel.app redirect login; custom domain `ztalk.akusedang.online` publik.
+- Resolver DNS lokal (tailscale magicDNS 100.100.100.100) sempat NXDOMAIN (negative cache); record DIEN confirmed di NS Cloudflare & resolver publik (1.1.1.1/8.8.8.8).
+
+## Skrip deploy (repo, scripts/)
+
+- `scripts/deploy-vercel.py` — deploy file statis via API (files blobs).
+- `scripts/trig.py` — trigger deploy gitSource (ref master) + polling READY.
+- `scripts/vc.py` — helper API: domain, redeploy, list deployments.
+- `scripts/cfdns.py` — Cloudflare DNS (CNAME list/create/delete) via token dari `~/.cloudflared/cert.pem`.
